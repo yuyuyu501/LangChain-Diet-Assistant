@@ -15,7 +15,7 @@ def get_llm(model_name: str = "glm-4-plus", temperature: float = 0.5):
     """
     if model_name == "glm-4-plus":
         return ChatZhipuAI(
-            api_key="c932cbee2dce48869aaa2d6072d09f79.4fMXPn8wdCfaXO0f",
+            api_key="",
             model="glm-4-plus",
             temperature=temperature,
         )

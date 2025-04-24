@@ -29,10 +29,8 @@
 
 ### AI机器人
 - LangChain框架
-- 知浦AI大语言模型
 - Neo4j知识图谱
 - 文本向量嵌入 (text2vec-base-chinese)
-- 食物图像识别模型
 
 ## 功能特点
 
@@ -53,65 +51,34 @@
 - Neo4j 5.0+
 - Conda
 
-### 后端安装
-
-1. 创建并激活Conda环境：
+### 需求依赖
 ```bash
-conda create -n robotS python=3.12
-conda activate robotS
-```
-
-2. 安装后端依赖：
-```bash
-cd backend
 pip install -r requirements.txt
 ```
 
-3. 配置环境变量：
-```bash
-# 复制环境变量模板并根据需要修改
-cp .env.example .env
-```
-
-4. 初始化数据库：
+### 初始化数据库：
 ```bash
 python init_db.py
 ```
 
-### 前端安装
-
-1. 安装依赖：
-```bash
-cd frontend/vue-project
-npm install
-```
-
-2. 构建前端：
-```bash
-npm run build
-```
-
-### AI机器人部分安装
-
-1. 确保在robotS环境中：
-```bash
-conda activate robotS
-```
-
-2. 安装相关依赖：
-```bash
-pip install langchain langchain-community langchain-core langgraph
-```
-
-3. 配置知识图谱：
+## 初始化知识图谱：
 ```bash
 cd robot/knowledge_graph/neo4j
 python init_graph.py
 ```
 
-## 运行项目
+### 前端安装
+```bash
+cd frontend/vue-project
+npm install
+```
 
-启动完整项目：
+### 环境配置
+补充.env中的key
+
+### 运行项目
+
+run.py文件一键启动前后端
 
 ```bash
 python run.py
@@ -121,7 +88,7 @@ python run.py
 
 ## 访问界面
 
-- 前端界面：http://localhost:5173 (开发模式) 或 http://localhost:8000 (生产环境)
+- 前端界面：http://localhost:5173
 - 后端API：http://localhost:8000/docs
 - 机器人API：http://localhost:8001/docs
 
@@ -136,7 +103,7 @@ python run.py
 
 ## 贡献者
 
-- 开发者: [您的姓名]
+- 开发者: [yuyuyu_501]
 
 ## 许可证
 

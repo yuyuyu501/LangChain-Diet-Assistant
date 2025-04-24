@@ -7,6 +7,7 @@ import asyncio
 import threading
 import multiprocessing
 import platform
+import subprocess
 
 # 获取项目根目录
 project_root = Path(__file__).resolve().parent
@@ -54,17 +55,34 @@ def run_robot_server():
         reload_dirs=[str(project_root), str(project_root / "robot")]
     )
 
+def run_frontend():
+    """运行frontend服务"""
+    frontend_path = project_root / "frontend" / "vue-project"
+    if not frontend_path.exists():
+        print(f"错误：前端目录不存在: {frontend_path}")
+        return
+    
+    # 切换到前端目录
+    os.chdir(frontend_path)
+    
+    # 启动开发服务器
+    if platform.system() == 'Windows':
+        subprocess.run("npm run dev", shell=True)
+    else:
+        subprocess.run(["npm", "run", "dev"])
+
 def start_servers():
     """启动所有服务"""
     if platform.system() == 'Windows':
         # Windows下使用spawn方式
         multiprocessing.set_start_method('spawn', force=True)
     
-    # 创建两个进程分别运行两个服务
+    # 创建进程分别运行三个服务
     backend_process = multiprocessing.Process(target=run_backend_server)
     robot_process = multiprocessing.Process(target=run_robot_server)
+    frontend_process = multiprocessing.Process(target=run_frontend)
     
-    processes = [backend_process, robot_process]
+    processes = [backend_process, robot_process, frontend_process]
     
     try:
         print("正在启动服务...")
